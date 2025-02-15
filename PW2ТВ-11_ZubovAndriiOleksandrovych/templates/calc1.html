@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Calculation</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Energy Efficiency Calculator</h2>
+        <form method="POST">
+            <label for="energyInput">Energy Input (Q):</label>
+            <input type="number" step="0.01" name="energyInput" required>
+
+            <label for="areaRatio">Area Ratio (A_r):</label>
+            <input type="number" step="0.01" name="areaRatio" required>
+
+            <label for="gasOutput">Gas Output (G_viv):</label>
+            <input type="number" step="0.01" name="gasOutput" required>
+
+            <label for="efficiencyFactor">Efficiency Factor:</label>
+            <input type="number" step="0.001" name="efficiencyFactor" required>
+
+            <label for="heatOutput">Heat Output (a_viv):</label>
+            <input type="number" step="0.01" name="heatOutput" required>
+
+            <label for="coefficient">Coefficient (B_i):</label>
+            <input type="number" step="0.01" name="coefficient" required>
+
+            <label for="tempFactor">Temperature Factor (k_tvs):</label>
+            <input type="number" step="0.01" name="tempFactor" required>
+
+            <button type="submit">Calculate</button>
+        </form>
+
+        {{if .heatCoeff}}
+        <div class="result">
+            <h3>Results</h3>
+            <p>Heat Coefficient: <strong>{{.heatCoeff}}</strong></p>
+            <p>Energy Output: <strong>{{.energyResult}}</strong></p>
+        </div>
+        {{end}}
+    </div>
+</body>
+</html>
