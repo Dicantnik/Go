@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Калькулятор енергії</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Калькулятор енергії</h1>
+    <form method="post" action="/">
+      <label for="Pc">Базова потужність (Pc):</label>
+      <input type="number" id="Pc" name="Pc" step="0.01" required>
+
+      <label for="Sigma">Стандартне відхилення (Sigma):</label>
+      <input type="number" id="Sigma" name="Sigma" step="0.01" required>
+
+      <label for="B">Тариф (B):</label>
+      <input type="number" id="B" name="B" step="0.01" required>
+
+      <button type="submit">Обчислити</button>
+    </form>
+
+    {{if .profit}}
+    <div class="results">
+      <h2>Результати</h2>
+      <p>Дохід: <strong>{{.revenue}}</strong></p>
+      <p>Штраф: <strong>{{.fine}}</strong></p>
+      <p>Прибуток: <strong>{{.profit}}</strong></p>
+    </div>
+    {{end}}
+  </div>
+</body>
+</html>
