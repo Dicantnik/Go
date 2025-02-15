@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Калькулятор 2</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="/task1">Калькулятор 1</a></li>
+            <li><a href="/task2">Калькулятор 2</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Калькулятор 2</h1>
+        <form method="POST" action="/task2">
+            <label for="C">Вуглець (C):</label>
+            <input type="text" name="C" id="C" required>
+
+            <label for="H">Водень (H):</label>
+            <input type="text" name="H" id="H" required>
+
+            <label for="S">Сірка (S):</label>
+            <input type="text" name="S" id="S" required>
+
+            <label for="O">Кисень (O):</label>
+            <input type="text" name="O" id="O" required>
+
+            <label for="W">Волога (W):</label>
+            <input type="text" name="W" id="W" required>
+
+            <label for="A">Зола (A):</label>
+            <input type="text" name="A" id="A" required>
+
+            <label for="V">Леткі речовини (V):</label>
+            <input type="text" name="V" id="V" required>
+
+            <label for="Q_comb">Нижча теплота згоряння горючої маси (Q_comb):</label>
+            <input type="text" name="Q_comb" id="Q_comb" required>
+
+            <button type="submit">Розрахувати</button>
+        </form>
+
+        {{if .WorkCoef}}
+        <div class="results">
+            <h2>Результати</h2>
+            <p>Коефіцієнт робочої маси: {{.WorkCoef}}</p>
+            <p>Вміст вуглецю у робочій масі: {{.CarbonWork}}</p>
+            <p>Вміст водню у робочій масі: {{.HydrogenWork}}</p>
+            <p>Вміст сірки у робочій масі: {{.SulfurWork}}</p>
+            <p>Вміст кисню у робочій масі: {{.OxygenWork}}</p>
+            <p>Вміст летких речовин: {{.VolatileWork}}</p>
+            <p>Зола: {{.Ash}}</p>
+            <p>Розрахункова теплота: {{.QResidual}}</p>
+        </div>
+        {{end}}
+    </div>
+</body>
+</html>
