@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="UTF-8">
+	<title>Калькулятор 2</title>
+	<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Калькулятор 2: Розрахунок реактивних імпедансів</h1>
+		<form method="post">
+			<label for="voltage">Напруга (voltage):</label>
+			<input type="number" step="any" name="voltage" id="voltage" required>
+			
+			<label for="impedance">Імпеданс (impedance):</label>
+			<input type="number" step="any" name="impedance" id="impedance" required>
+			
+			<button type="submit">Розрахувати</button>
+		</form>
+		
+		{{if .result}}
+		<div class="result">
+			<h2>Результати:</h2>
+			<p>Реакт. кола: {{.reactanceCircuit}}</p>
+			<p>Реакт. трансформатора: {{.transformerReactance}}</p>
+			<p>Сумарна реактанс: {{.totalReactance}}</p>
+			<p>Струм короткого замикання: {{.faultCurrent}}</p>
+		</div>
+		{{end}}
+	</div>
+</body>
+</html>

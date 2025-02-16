@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="UTF-8">
+	<title>Калькулятор 1</title>
+	<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Калькулятор 1: Розрахунок струму та перетину</h1>
+		<form method="post">
+			<label for="area">Розрахункове навантаження:</label>
+			<input type="number" step="any" name="area" id="area" required>
+			
+			<label for="faultCurrent">Струм короткого замикання (faultCurrent):</label>
+			<input type="number" step="any" name="faultCurrent" id="faultCurrent" required>
+			
+			<label for="timeFactor">Час дії струму (timeFactor):</label>
+			<input type="number" step="any" name="timeFactor" id="timeFactor" required>
+			
+			<label for="ratedVolt">Номінальна напруга (ratedVolt):</label>
+			<input type="number" step="any" name="ratedVolt" id="ratedVolt" required>
+			
+			<label for="extraField">Тривалість роботи (extraField):</label>
+			<input type="number" step="any" name="extraField" id="extraField" required>
+			
+			<button type="submit">Розрахувати</button>
+		</form>
+		
+		{{if .result}}
+		<div class="result">
+			<h2>Результати:</h2>
+			<p>Розрахунковий струм: {{.currentCalc}}</p>
+			<p>Післяаварійний режим струм: {{.doubledCalc}}</p>
+			<p>Перетин провідника: {{.sectionCalc}}</p>
+			<p>Мінімальний перетин: {{.minimalSection}}</p>
+		</div>
+		{{end}}
+	</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+	<meta charset="UTF-8">
+	<title>Калькулятор 3</title>
+	<link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Калькулятор 3: Розрахунок струмів та опор</h1>
+		<form method="post">
+			<label for="maxVoltageDrop">Макс. напруга (maxVoltageDrop):</label>
+			<input type="number" step="any" name="maxVoltageDrop" id="maxVoltageDrop" required>
+			
+			<label for="transformerPower">Номінальна потужність трансформатора (transformerPower):</label>
+			<input type="number" step="any" name="transformerPower" id="transformerPower" required>
+			
+			<label for="normalRes">Опір в нормальному режимі (normalRes):</label>
+			<input type="number" step="any" name="normalRes" id="normalRes" required>
+			
+			<label for="normalReact">Реакт. в нормальному режимі (normalReact):</label>
+			<input type="number" step="any" name="normalReact" id="normalReact" required>
+			
+			<label for="minimalRes">Опір в мінімальному режимі (minimalRes):</label>
+			<input type="number" step="any" name="minimalRes" id="minimalRes" required>
+			
+			<label for="minimalReact">Реакт. в мінімальному режимі (minimalReact):</label>
+			<input type="number" step="any" name="minimalReact" id="minimalReact" required>
+			
+			<label for="ratedSecondary">Номінальна напруга (ratedSecondary):</label>
+			<input type="number" step="any" name="ratedSecondary" id="ratedSecondary" required>
+			
+			<label for="primaryVoltage">Реактивний опір трансформатора:</label>
+			<input type="number" step="any" name="primaryVoltage" id="primaryVoltage" required>
+			
+			<button type="submit">Розрахувати</button>
+		</form>
+		
+		{{if .error}}
+		<div class="error">
+			<p>{{.error}}</p>
+		</div>
+		{{end}}
+		
+		{{if .xTransformer}}
+		<div class="result">
+			<h2>Результати:</h2>
+			<p>Імпеданс трансформатора: {{.xTransformer}}</p>
+			<p><strong>Нормальний режим:</strong></p>
+			<ul>
+				<li>Сумарний реактанс: {{.xSheetNormal}}</li>
+				<li>Опір кола: {{.impedanceNormal}}</li>
+				<li>Струм КЗ (3‑фазний): {{.threePhaseFaultNormal}}</li>
+				<li>Струм КЗ (2‑фазний): {{.twoPhaseFaultNormal}}</li>
+			</ul>
+			<p><strong>Мінімальний режим:</strong></p>
+			<ul>
+				<li>Сумарний реактанс: {{.xSheetMinimal}}</li>
+				<li>Опір кола: {{.impedanceMinimal}}</li>
+				<li>Струм КЗ (3‑фазний): {{.threePhaseFaultMinimal}}</li>
+				<li>Струм КЗ (2‑фазний): {{.twoPhaseFaultMinimal}}</li>
+			</ul>
+			<p>Коефіцієнт приведення: {{.transformCoeff}}</p>
+			<p><strong>Відкориговані параметри нормального режиму:</strong></p>
+			<ul>
+				<li>Опір: {{.adjustedNormalRes}}</li>
+				<li>Реакт.: {{.adjustedNormalReact}}</li>
+				<li>Опір кола: {{.adjustedImpedanceNormal}}</li>
+			</ul>
+			<p><strong>Відкориговані параметри мінімального режиму:</strong></p>
+			<ul>
+				<li>Опір: {{.adjustedMinimalRes}}</li>
+				<li>Реакт.: {{.adjustedMinimalReact}}</li>
+				<li>Опір кола: {{.adjustedImpedanceMinimal}}</li>
+			</ul>
+			<p><strong>Фактичні струми:</strong></p>
+			<ul>
+				<li>Нормальний режим (3‑фазний): {{.actualThreePhaseNormal}}</li>
+				<li>Нормальний режим (2‑фазний): {{.actualTwoPhaseNormal}}</li>
+				<li>Мінімальний режим (3‑фазний): {{.actualThreePhaseMinimal}}</li>
+				<li>Мінімальний режим (2‑фазний): {{.actualTwoPhaseMinimal}}</li>
+			</ul>
+			<p>Довжина лінії: {{.lineLength}}</p>
+			<p><strong>Параметри лінії:</strong></p>
+			<ul>
+				<li>Опір: {{.lineRes}}</li>
+				<li>Реакт.: {{.lineReact}}</li>
+			</ul>
+			<p><strong>Параметри в точці 10 (нормальний режим):</strong></p>
+			<ul>
+				<li>Опір: {{.pointResNormal}}</li>
+				<li>Реакт.: {{.pointReactNormal}}</li>
+				<li>Опір кола: {{.pointImpedanceNormal}}</li>
+			</ul>
+			<p><strong>Параметри в точці 10 (мінімальний режим):</strong></p>
+			<ul>
+				<li>Опір: {{.pointResMinimal}}</li>
+				<li>Реакт.: {{.pointReactMinimal}}</li>
+				<li>Опір кола: {{.pointImpedanceMinimal}}</li>
+			</ul>
+			<p><strong>Струми КЗ в точці 10:</strong></p>
+			<ul>
+				<li>Нормальний режим (3‑фазний): {{.faultPointThreePhaseNormal}}</li>
+				<li>Нормальний режим (2‑фазний): {{.faultPointTwoPhaseNormal}}</li>
+				<li>Мінімальний режим (3‑фазний): {{.faultPointThreePhaseMinimal}}</li>
+				<li>Мінімальний режим (2‑фазний): {{.faultPointTwoPhaseMinimal}}</li>
+			</ul>
+		</div>
+		{{end}}
+	</div>
+</body>
+</html>
