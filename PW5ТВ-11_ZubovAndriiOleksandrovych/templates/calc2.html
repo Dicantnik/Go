@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Розрахунок надійності</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Розрахунок надійності</h1>
+    <form method="post">
+      <h2>Введіть кількість елементів</h2>
+
+      <label for="T-110 kV">T-110 kV:</label>
+      <input type="number" id="T-110 kV" name="T-110 kV" value="0" required>
+
+      <label for="T-35 kV">T-35 kV:</label>
+      <input type="number" id="T-35 kV" name="T-35 kV" value="0" required>
+
+      <label for="T-10 kV (Cable Network)">T-10 kV (Cable Network):</label>
+      <input type="number" id="T-10 kV (Cable Network)" name="T-10 kV (Cable Network)" value="0" required>
+
+      <label for="T-10 kV (Overhead Network)">T-10 kV (Overhead Network):</label>
+      <input type="number" id="T-10 kV (Overhead Network)" name="T-10 kV (Overhead Network)" value="0" required>
+
+      <label for="B-110 kV (Gas-Insulated)">B-110 kV (Gas-Insulated):</label>
+      <input type="number" id="B-110 kV (Gas-Insulated)" name="B-110 kV (Gas-Insulated)" value="0" required>
+
+      <label for="B-10 kV (Oil)">B-10 kV (Oil):</label>
+      <input type="number" id="B-10 kV (Oil)" name="B-10 kV (Oil)" value="0" required>
+
+      <label for="B-10 kV (Vacuum)">B-10 kV (Vacuum):</label>
+      <input type="number" id="B-10 kV (Vacuum)" name="B-10 kV (Vacuum)" value="0" required>
+
+      <label for="Busbars 10 kV per Connection">Busbars 10 kV per Connection:</label>
+      <input type="number" id="Busbars 10 kV per Connection" name="Busbars 10 kV per Connection" value="0" required>
+
+      <label for="AV-0.38 kV">AV-0.38 kV:</label>
+      <input type="number" id="AV-0.38 kV" name="AV-0.38 kV" value="0" required>
+
+      <label for="ED 6,10 kV">ED 6,10 kV:</label>
+      <input type="number" id="ED 6,10 kV" name="ED 6,10 kV" value="0" required>
+
+      <label for="ED 0.38 kV">ED 0.38 kV:</label>
+      <input type="number" id="ED 0.38 kV" name="ED 0.38 kV" value="0" required>
+
+      <label for="PL-110 kV">PL-110 kV:</label>
+      <input type="number" id="PL-110 kV" name="PL-110 kV" value="0" required>
+
+      <label for="PL-35 kV">PL-35 kV:</label>
+      <input type="number" id="PL-35 kV" name="PL-35 kV" value="0" required>
+
+      <label for="PL-10 kV">PL-10 kV:</label>
+      <input type="number" id="PL-10 kV" name="PL-10 kV" value="0" required>
+
+      <label for="CL-10 kV (Trench)">CL-10 kV (Trench):</label>
+      <input type="number" id="CL-10 kV (Trench)" name="CL-10 kV (Trench)" value="0" required>
+
+      <label for="CL-10 kV (Cable Channel)">CL-10 kV (Cable Channel):</label>
+      <input type="number" id="CL-10 kV (Cable Channel)" name="CL-10 kV (Cable Channel)" value="0" required>
+
+      <button type="submit">Розрахувати</button>
+    </form>
+
+    {{ if . }}
+    <div class="result">
+      <p>Загальна ймовірність відмов: <strong>{{ .TotalFailure }}</strong></p>
+      <p>Середній час відновлення: <strong>{{ .MeanRepair }}</strong></p>
+      <p>Незапланований простій: <strong>{{ .Unplanned }}</strong></p>
+      <p>Запланований простій: <strong>{{ .Scheduled }}</strong></p>
+      <p>Комбінована ймовірність відмов: <strong>{{ .Combined }}</strong></p>
+      <p>Фінальна ймовірність відмов: <strong>{{ .Final }}</strong></p>
+    </div>
+    {{ end }}
+  </div>
+</body>
+</html>

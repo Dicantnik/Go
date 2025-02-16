@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Калькулятор втрат</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Калькулятор втрат</h1>
+    <form method="post">
+      <label for="omega">Омега:</label>
+      <input type="number" step="any" id="omega" name="omega" required>
+
+      <label for="tb">tb:</label>
+      <input type="number" step="any" id="tb" name="tb" required>
+
+      <label for="pNom">Номінальна потужність (pNom):</label>
+      <input type="number" step="any" id="pNom" name="pNom" required>
+
+      <label for="tm">tm:</label>
+      <input type="number" step="any" id="tm" name="tm" required>
+
+      <label for="kp">Коефіцієнт (kp):</label>
+      <input type="number" step="any" id="kp" name="kp" required>
+
+      <label for="zPer0">Початкові втрати (zPer0):</label>
+      <input type="number" step="any" id="zPer0" name="zPer0" required>
+
+      <label for="zPlan">Планові втрати (zPlan):</label>
+      <input type="number" step="any" id="zPlan" name="zPlan" required>
+
+      <button type="submit">Розрахувати</button>
+    </form>
+
+    {{ if . }}
+    <div class="result">
+      <p>Втрати аварійні: <strong>{{ .LossAvar }}</strong></p>
+      <p>Втрати планові: <strong>{{ .LossPlan }}</strong></p>
+      <p>Загальні втрати: <strong>{{ .TotalLoss }}</strong></p>
+    </div>
+    {{ end }}
+  </div>
+</body>
+</html>
